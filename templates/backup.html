@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Backups{% endblock %}
+{% block content %}
+<section class="glass panel">
+  <h1>Índice de backups</h1>
+  <p class="muted">Diretório legado temporariamente visível para auditoria.</p>
+  <ul class="file-list">
+    {% for file in files %}
+      <li><a href="{{ url_for('backup_file', filename=file) }}">{{ file }}</a></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

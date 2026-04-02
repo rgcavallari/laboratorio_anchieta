@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Logs de acesso{% endblock %}
+{% block content %}
+<section class="panel glass">
+  <div class="section-head">
+    <div>
+      <h1>Logs de acesso no banco de dados</h1>
+      <p class="muted">Últimos 200 registros capturados pela aplicação.</p>
+    </div>
+    <a class="btn ghost" href="{{ url_for('dashboard') }}">Voltar ao dashboard</a>
+  </div>
+  {% if logs %}
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Data/Hora</th>
+          <th>IP</th>
+          <th>Método</th>
+          <th>Rota</th>
+          <th>Consentimento</th>
+          <th>User-Agent</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for log in logs %}
+        <tr>
+          <td>{{ log.id }}</td>
+          <td>{{ log.created_at }}</td>
+          <td>{{ log.ip }}</td>
+          <td>{{ log.method }}</td>
+          <td>{{ log.path }}</td>
+          <td>{{ "sim" if log.consent else "não" }}</td>
+          <td>{{ log.user_agent }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty-state">Nenhum log foi registrado até o momento.</div>
+  {% endif %}
+</section>
+{% endblock %}

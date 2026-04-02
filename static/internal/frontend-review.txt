@@ -1,0 +1,5 @@
+Revisão interna - frontend
+- Evitar uso de innerHTML com dados provenientes de formulários e query string.
+- Preferir textContent quando o objetivo for apenas exibir texto.
+- Aplicar escape contextual em qualquer conteúdo dinâmico.
+- Conferir páginas de busca, comentários, perfis e mensagens de erro.

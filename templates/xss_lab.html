@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Laboratório XSS{% endblock %}
+{% block content %}
+<section class="glass panel">
+  <h1>Laboratório de análise de XSS</h1>
+  <p class="muted">
+    Esta página foi preparada para análise didática de entradas refletidas. O valor recebido pela URL é exibido abaixo de forma segura.
+  </p>
+
+  <form class="searchbar" method="get">
+    <input type="text" name="payload" value="{{ raw_payload }}" placeholder="Digite um payload para análise">
+    <button class="btn primary" type="submit">Analisar entrada</button>
+  </form>
+
+  <div class="cards compact">
+    <article class="card glass">
+      <span class="tag">Entrada recebida</span>
+      <p><code>{{ raw_payload }}</code></p>
+    </article>
+    <article class="card glass">
+      <span class="tag">Renderização segura</span>
+      <div class="safe-box">{{ payload }}</div>
+    </article>
+    <article class="card glass">
+      <span class="tag">Observação</span>
+      <p>Em uma implementação insegura, essa mesma entrada poderia ser interpretada como HTML ou script no navegador.</p>
+    </article>
+  </div>
+
+  <article class="glass panel section-card">
+    <h2>Pistas para investigação</h2>
+    <ul class="feature-list">
+      <li>Verifique como a aplicação exibe dados enviados pelo usuário.</li>
+      <li>Observe diferenças entre texto literal e HTML interpretado.</li>
+      <li>Consulte a revisão de código da busca em <a href="{{ url_for('code_review_search') }}">/code-review/search</a>.</li>
+      <li>Leia as notas do time em <a href="{{ url_for('security_notes') }}">/security-notes</a>.</li>
+    </ul>
+  </article>
+</section>
+{% endblock %}

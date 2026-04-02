@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Laboratório Anchieta | Home{% endblock %}
+{% block content %}
+<section class="hero glass">
+  <div class="hero-copy">
+    <span class="eyebrow">Ambiente interno</span>
+    <h1>Painel de operações e auditoria digital</h1>
+    <p>
+      Um portal elegante para simular um ambiente corporativo em aulas práticas de cybersegurança.
+      Explore páginas, diretórios e serviços expostos neste laboratório controlado.     </p>
+    
+  </div>
+  <div class="hero-card">
+    <div class="stat">
+      <strong>2.6</strong>
+      <span>Versão do portal</span>
+    </div>
+    <div class="stat">
+      <strong>24/7</strong>
+      <span>Painel de monitoramento</span>
+    </div>
+    <div class="stat">
+      <strong>LAB</strong>
+      <span>Uso exclusivamente didático</span>
+    </div>
+  </div>
+</section>
+
+
+<section class="cards">
+  {% for item in news %}
+  <article class="card glass">
+    <span class="tag">{{ item.tag }}</span>
+    <h3>{{ item.title }}</h3>
+    <p>Atualização publicada pela equipe interna do Laboratório Anchieta.</p>
+  </article>
+  {% endfor %}
+</section>
+<!-- TODO: remover endpoint /internal-api antes do deploy -->
+
+<section class="split">
+  <article class="glass panel">
+    <h2>Recursos disponíveis</h2>
+    <ul class="feature-list">
+      <li>Busca interna por documentos</li>
+      <li>Painel de administração</li>
+      <li>Status simplificado do servidor</li>
+      <li>Perfis de equipes e relatórios</li>
+      <li>Base corporativa espelhada para testes</li>
+    </ul>
+  </article>
+
+  
+</section>
+
+{% endblock %}

@@ -1,0 +1,8 @@
+{
+  "environment": "development",
+  "debug": true,
+  "db_host": "localhost",
+  "db_name": "corp_data",
+  "api_key": "aurora-dev-123456",
+  "note": "REMOVER EM PRODU\u00c7\u00c3O"
+}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Status{% endblock %}
+{% block content %}
+<section class="glass panel">
+  <h1>Status do servidor</h1>
+  <div class="cards compact">
+    {% for key, value in data.items() %}
+    <article class="card glass">
+      <h3>{{ key }}</h3>
+      <p>{{ value }}</p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

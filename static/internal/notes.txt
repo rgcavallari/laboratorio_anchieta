@@ -1,0 +1,6 @@
+
+Notas internas:
+- endpoint /internal-api ainda ativo
+- revisar permissões de /records
+- remover credenciais de teste
+- BUSCAR/SEARCH presente de aniversário
