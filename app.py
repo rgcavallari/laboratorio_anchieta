@@ -135,7 +135,7 @@ def search():
             "content": """
             
 Instruções
-Leia o cenário com atenção. As questões foram elaboradas com base no laboratório, especialmente nas rotas `/xss-lab`, `/code-review/search` e `/security-notes`. Considere aspectos de identificação do risco, impacto, mitigação e governança de desenvolvimento seguro. As respostas devem ser inseridas na parte 1 da sua tarefa.
+Leia o cenário com atenção. As respostas devem ser inseridas na parte 2 da sua tarefa.
 
 ## QUESTÃO 1
 

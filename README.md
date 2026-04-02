@@ -1,4 +1,4 @@
-# Portal Aurora - laboratório didático de cybersegurança
+# Laboratório Anchieta - laboratório didático de cybersegurança
 
 Projeto intencionalmente inseguro para uso exclusivamente educacional, em ambiente isolado.
 
