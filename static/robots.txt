@@ -2,3 +2,4 @@ User-agent: *
 Disallow: /admin
 Disallow: /backup/
 Disallow: /server-status
+Disallow: /prova/codigo.txt
