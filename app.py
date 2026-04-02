@@ -320,6 +320,18 @@ def dashboard():
     users = load_users()
     return render_template("dashboard.html", user=session["user"], role=users[session["user"]]["role"])
 
+@app.route("/admin/logs-db")
+def admin_logs_db():
+    if "user" not in session:
+        return redirect(url_for("admin"))
+    conn = sqlite3.connect(ACCESS_DB_PATH)
+    conn.row_factory = sqlite3.Row
+    logs = conn.execute(
+        "SELECT id, ip, user_agent, path, method, consent, created_at FROM access_log ORDER BY id DESC LIMIT 200"
+    ).fetchall()
+    conn.close()
+    return render_template("logs_db.html", logs=logs)
+
 @app.route("/logout")
 def logout():
     session.clear()
