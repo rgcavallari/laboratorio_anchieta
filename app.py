@@ -45,7 +45,7 @@ def save_users(users):
 
 BACKUP_DIR = os.path.join(app.root_path, "static", "backup")
 
-DB_PATH = os.path.join(app.root_path, "access_logs.db")
+ACCESS_DB_PATH = os.path.join(app.root_path, "access_logs.db")
 
 DATA_DB_PATH = os.path.join(app.root_path, "corp_data.db")
 
@@ -56,7 +56,7 @@ def get_data_connection():
 
 
 def init_db():
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(ACCESS_DB_PATH)
     conn.execute("""
         CREATE TABLE IF NOT EXISTS access_log (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -82,7 +82,7 @@ def register_access():
     if request.path.startswith("/static/"):
         return
     consent = 1 if request.cookies.get("anchieta_cookie_consent") == "accepted" else 0
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(ACCESS_DB_PATH)
     conn.execute(
         "INSERT INTO access_log (ip, user_agent, path, method, consent, created_at) VALUES (?, ?, ?, ?, ?, ?)",
         (
@@ -320,18 +320,6 @@ def dashboard():
     users = load_users()
     return render_template("dashboard.html", user=session["user"], role=users[session["user"]]["role"])
 
-@app.route("/admin/logs-db")
-def admin_logs_db():
-    if "user" not in session:
-        return redirect(url_for("admin"))
-    conn = sqlite3.connect(ACCESS_DB_PATH)
-    conn.row_factory = sqlite3.Row
-    logs = conn.execute(
-        "SELECT id, ip, user_agent, path, method, consent, created_at FROM access_log ORDER BY id DESC LIMIT 200"
-    ).fetchall()
-    conn.close()
-    return render_template("logs_db.html", logs=logs)
-
 @app.route("/logout")
 def logout():
     session.clear()
@@ -495,11 +483,11 @@ def cookie_consent(choice):
         response.set_cookie("anchieta_cookie_consent", "rejected", max_age=60*60*24*30, samesite="Lax")
     return response
 
-@app.route("/access-log")
+@app.route("/access_log")
 def access_log():
     if "user" not in session:
         return redirect(url_for("admin"))
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(ACCESS_DB_PATH)
     rows = conn.execute(
         "SELECT ip, user_agent, path, method, consent, created_at FROM access_log ORDER BY id DESC LIMIT 100"
     ).fetchall()
