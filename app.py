@@ -135,7 +135,7 @@ def search():
             "content": """
             
 Instruções
-Leia o cenário com atenção. As respostas devem ser inseridas na parte 2 da sua tarefa.
+Leia o cenário com atenção. As respostas devem ser inseridas no final do relatório da parte 1 da tarefa.
 
 ## QUESTÃO 1
 
